@@ -1,22 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:paddingTop="0dp"
+    android:gravity="top">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light Logistics"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="0dp"/>
+
+    <!-- Deliveries Section -->
+    <TextView
+        android:id="@+id/deliveries_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deliveries"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/deliveries_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_delivery_man_image"
+        android:scaleType="centerCrop"
+        android:contentDescription="Deliveries Image"/>
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/deliveries_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:text="Manage all incoming and outgoing deliveries efficiently."
+        android:paddingBottom="16dp"/>
+
+    <!-- Stock Updates Section -->
+    <TextView
+        android:id="@+id/stock_updates_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stock Updates"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
+    <ImageView
+        android:id="@+id/stock_updates_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_stock_sheet_image"
+        android:scaleType="centerCrop"
+        android:contentDescription="Stock Updates Image"/>
+
+    <TextView
+        android:id="@+id/stock_updates_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keep track of stock levels and update inventory in real-time."
+        android:paddingBottom="16dp"/>
+
+    <!-- Additional Sections -->
+    <TextView
+        android:id="@+id/other_features_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other Features"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/other_features_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore more features to streamline warehouse operations."
+        android:paddingBottom="16dp"/>
+
+</LinearLayout>

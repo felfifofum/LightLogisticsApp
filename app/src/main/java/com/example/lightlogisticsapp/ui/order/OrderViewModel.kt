@@ -10,4 +10,13 @@ class OrderViewModel : ViewModel() {
         value = "This is order Fragment"
     }
     val text: LiveData<String> = _text
+
+    // Additional LiveData for order details
+    private val _orderDetails = MutableLiveData<String>()
+    val orderDetails: LiveData<String> = _orderDetails
+
+    // Method to update order details
+    fun updateOrderDetails(details: String) {
+        _orderDetails.value = details
+    }
 }
