@@ -1,43 +1,33 @@
-package com.example.lightlogisticsapp.ui.stock
+package com.example.lightlogisticsapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.lightlogisticsapp.model.AbstractStock
+import com.example.lightlogisticsapp.model.PerishableStock
 import com.example.lightlogisticsapp.model.Stock
 
 class StockViewModel : ViewModel() {
+    private val _stocks = MutableLiveData<List<AbstractStock<*>>>()
+    val stocks: LiveData<List<AbstractStock<*>>> get() = _stocks
 
-    private val _stock = MutableLiveData<Stock>().apply {
-        value = Stock(id = "1", name = "Sample Item", quantity = 100, price = 10.0)
-    }
-    val stock: LiveData<Stock> = _stock
-
-    private val _events = MutableLiveData<String>()
-    val events: LiveData<String> = _events
-
-    fun updateStockQuantity(newQuantity: Int) {
-        _stock.value = _stock.value?.updateQuantity(newQuantity)
-        _events.value = "Stock quantity updated to $newQuantity"
+    init {
+        // Sample data
+        _stocks.value = listOf(
+            Stock("1", "Desk Chair", 100, 300.0),
+            PerishableStock("2", "Milk", 50, 1.5, "30/07/2025")
+        )
     }
 
-    fun updateStockPrice(newPrice: Double) {
-        _stock.value = _stock.value?.updatePrice(newPrice)
-        _events.value = "Stock price updated to $newPrice"
+    fun updateStockQuantity(id: String, newQuantity: Int) {
+        _stocks.value = _stocks.value?.map {
+            if (it.id == id) it.updateQuantity(newQuantity) else it
+        }
     }
 
-    fun addNewStock(stock: Stock) {
-        _stock.value = stock
-        _events.value = "New stock added: ${stock.name}"
-    }
-
-    fun placeOrder(quantity: Int) {
-        _stock.value?.let {
-            if (it.quantity >= quantity) {
-                _stock.value = it.updateQuantity(it.quantity - quantity)
-                _events.value = "Order placed for $quantity items"
-            } else {
-                _events.value = "Insufficient stock to place order"
-            }
+    fun addStock(newStock: AbstractStock<*>) {
+        _stocks.value = _stocks.value?.toMutableList()?.apply {
+            add(newStock)
         }
     }
 }
