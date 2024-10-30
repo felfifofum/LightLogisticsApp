@@ -1,13 +1,13 @@
-package com.example.lightlogisticsapp.ui.dashboard
+package com.example.lightlogisticsapp.ui.delivery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class DeliveryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is delivery Fragment"
     }
     val text: LiveData<String> = _text
 }

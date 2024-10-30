@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.lightlogisticsapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_stock"
+        android:name="com.example.lightlogisticsapp.ui.stock.StockFragment"
+        android:label="@string/title_stock"
+        tools:layout="@layout/fragment_stock" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.lightlogisticsapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_order"
+        android:name="com.example.lightlogisticsapp.ui.order.OrderFragment"
+        android:label="@string/title_order"
+        tools:layout="@layout/fragment_order" />
+
+    <fragment
+        android:id="@+id/navigation_delivery"
+        android:name="com.example.lightlogisticsapp.ui.delivery.DeliveryFragment"
+        android:label="@string/title_delivery"
+        tools:layout="@layout/fragment_delivery" />
 </navigation>
