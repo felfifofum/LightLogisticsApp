@@ -6,6 +6,7 @@ data class Stock(
     override var quantity: Int,
     override var price: Double
 ) : AbstractStock<Stock>(id, name, quantity, price) {
+
     override fun updateQuantity(newQuantity: Int): Stock {
         return this.copy(quantity = newQuantity)
     }

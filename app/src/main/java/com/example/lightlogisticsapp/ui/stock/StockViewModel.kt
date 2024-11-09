@@ -1,4 +1,4 @@
-package com.example.lightlogisticsapp.viewmodel
+package com.example.lightlogisticsapp.ui.stock
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,12 +22,6 @@ class StockViewModel : ViewModel() {
     fun updateStockQuantity(id: String, newQuantity: Int) {
         _stocks.value = _stocks.value?.map {
             if (it.id == id) it.updateQuantity(newQuantity) else it
-        }
-    }
-
-    fun addStock(newStock: AbstractStock<*>) {
-        _stocks.value = _stocks.value?.toMutableList()?.apply {
-            add(newStock)
         }
     }
 }

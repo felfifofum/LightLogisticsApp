@@ -1,8 +1,10 @@
 package com.example.lightlogisticsapp.ui.stock
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -27,19 +29,21 @@ class StockAdapter(private val onUpdateQuantity: (AbstractStock<*>, Int) -> Unit
     class StockViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val stockName: TextView = itemView.findViewById(R.id.stock_name)
         private val stockQuantity: TextView = itemView.findViewById(R.id.stock_quantity)
-        private val stockPrice: TextView = itemView.findViewById(R.id.stock_price)
         private val editQuantity: EditText = itemView.findViewById(R.id.edit_quantity)
         private val updateButton: Button = itemView.findViewById(R.id.update_button)
 
         fun bind(stock: AbstractStock<*>, onUpdateQuantity: (AbstractStock<*>, Int) -> Unit) {
             stockName.text = stock.name
             stockQuantity.text = "Quantity: ${stock.quantity}"
-            stockPrice.text = "Price: £${stock.price}"
 
             updateButton.setOnClickListener {
                 val newQuantity = editQuantity.text.toString().toIntOrNull()
                 if (newQuantity != null) {
                     onUpdateQuantity(stock, newQuantity)
+
+                    // Hide  keyboard
+                    val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(itemView.windowToken, 0)
                 }
             }
         }

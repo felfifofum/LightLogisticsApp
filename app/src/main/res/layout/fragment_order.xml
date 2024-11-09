@@ -1,54 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.order.OrderFragment">
-
-    <TextView
-        android:id="@+id/text_order"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextOrderDetails"
+        android:id="@+id/edit_order_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Enter order details"
-        app:layout_constraintTop_toBottomOf="@id/text_order"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:hint="Order Name" />
+
+    <EditText
+        android:id="@+id/edit_order_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Order Quantity"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edit_order_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Order Price"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edit_customer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Customer Name" />
+
+    <EditText
+        android:id="@+id/edit_delivery_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Delivery Date"
+        android:inputType="date" />
 
     <Button
-        android:id="@+id/buttonUpdateOrder"
+        android:id="@+id/add_order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Update Order"
-        app:layout_constraintTop_toBottomOf="@id/editTextOrderDetails"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="Add Order" />
 
-    <TextView
-        android:id="@+id/textOrderDetails"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Order Details"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/buttonUpdateOrder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
