@@ -7,6 +7,7 @@ import com.example.lightlogisticsapp.model.AbstractStock
 import com.example.lightlogisticsapp.model.Delivery
 import com.example.lightlogisticsapp.model.DeliveryStatus
 import com.example.lightlogisticsapp.model.Order
+import com.example.lightlogisticsapp.model.PerishableStock
 import com.example.lightlogisticsapp.model.Stock
 
 class SharedViewModel : ViewModel() {
@@ -23,7 +24,7 @@ class SharedViewModel : ViewModel() {
         // Sample data
         _stocks.value = listOf(
             Stock("1", "Desk Chair", 100, 300.0),
-            Stock("2", "Milk", 50, 1.5)
+            PerishableStock("2", "Milk", 50, 1.5, "11/12/2024")
         )
         _orders.value = listOf(
             Order("1", "Laptop", 10, 1500.0, "John Doe", "01/11/2024"),
