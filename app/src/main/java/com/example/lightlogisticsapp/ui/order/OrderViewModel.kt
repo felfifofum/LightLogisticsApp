@@ -1,10 +1,10 @@
 package com.example.lightlogisticsapp.ui.order
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lightlogisticsapp.model.Order
-import com.example.lightlogisticsapp.model.Stock
 import com.example.lightlogisticsapp.ui.stock.StockViewModel
 
 class OrderViewModel(private val stockViewModel: StockViewModel) : ViewModel() {
@@ -12,29 +12,29 @@ class OrderViewModel(private val stockViewModel: StockViewModel) : ViewModel() {
     val orders: LiveData<List<Order>> get() = _orders
 
     init {
-        // Sample data
-        _orders.value = listOf(
-            Order("1", "Laptop", 10, 1500.0, "John Doe", "01/11/2024"),
-            Order("2", "Smartphone", 20, 800.0, "Jane Smith", "02/11/2024")
-        )
-    }
-
-    fun updateOrderQuantity(id: String, newQuantity: Int) {
-        _orders.value = _orders.value?.map {
-            if (it.id == id) it.updateQuantity(newQuantity) else it
-        }
+        _orders.value = emptyList()
     }
 
     fun addOrder(newOrder: Order): Boolean {
-        val stock = stockViewModel.stocks.value?.find { it.name == newOrder.name }
-        return if (stock != null && stock.quantity >= newOrder.quantity) {
-            stockViewModel.updateStockQuantity(stock.id, stock.quantity - newOrder.quantity)
-            _orders.value = _orders.value?.toMutableList()?.apply {
-                add(newOrder)
-            }
-            true
-        } else {
-            false
+        val stock = stockViewModel.stocks.value?.find { it.name.equals(newOrder.name, ignoreCase = true) }
+
+        if (stock == null) {
+            Log.d("OrderViewModel", "Stock not found for name: ${newOrder.name}")
+            return false
         }
+
+        if (stock.quantity < newOrder.quantity) {
+            Log.d("OrderViewModel", "Not enough stock: Available=${stock.quantity}, Requested=${newOrder.quantity}")
+            return false
+        }
+
+        Log.d("OrderViewModel", "Adding order: $newOrder")
+        stockViewModel.updateStockQuantity(stock.id, stock.quantity - newOrder.quantity)
+
+        _orders.value = _orders.value?.toMutableList()?.apply {
+            add(newOrder)
+        } ?: listOf(newOrder)
+
+        return true
     }
 }

@@ -1,5 +1,6 @@
 package com.example.lightlogisticsapp.ui.shared
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,7 +32,12 @@ class SharedViewModel : ViewModel() {
             Order("2", "Smartphone", 20, 800.0, "Jane Smith", "02/11/2024")
         )
         _deliveries.value = listOf(
-            Delivery(id = "1", destination = "Warehouse A", status = DeliveryStatus.PENDING, items = listOf())
+            Delivery(
+                id = "1",
+                destination = "Warehouse A",
+                status = DeliveryStatus.PENDING,
+                items = listOf()
+            )
         )
     }
 
@@ -53,17 +59,34 @@ class SharedViewModel : ViewModel() {
         }
     }
 
+
     fun addOrder(newOrder: Order): Boolean {
-        val stock = _stocks.value?.find { it.name == newOrder.name }
-        return if (stock != null && stock.quantity >= newOrder.quantity) {
-            updateStockQuantity(stock.id, stock.quantity - newOrder.quantity)
-            _orders.value = _orders.value?.toMutableList()?.apply {
-                add(newOrder)
-            }
-            true
-        } else {
-            false
+        Log.d("SharedViewModel", "Available stocks: ${_stocks.value}")
+
+        // Case-insensitive/trimmed allowance
+        val stock = _stocks.value?.find {
+            it.name.trim().equals(newOrder.name.trim(), ignoreCase = true)
         }
+
+        if (stock == null) {
+            Log.d("SharedViewModel", "Stock not found for name: ${newOrder.name.trim()}")
+            return false
+        }
+
+        if (stock.quantity < newOrder.quantity) {
+            Log.d("SharedViewModel", "Not enough stock: Available=${stock.quantity}, Requested=${newOrder.quantity}")
+            return false
+        }
+
+        // Stock found and sufficient quantity available
+        updateStockQuantity(stock.id, stock.quantity - newOrder.quantity)
+
+        // Update orders list
+        _orders.value = _orders.value?.toMutableList()?.apply {
+            add(newOrder)
+        } ?: listOf(newOrder)
+
+        return true
     }
 
     fun updateDeliveryStatus(id: String, newStatus: DeliveryStatus) {

@@ -4,50 +4,79 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Place an Order"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:paddingBottom="16dp" />
+
     <EditText
         android:id="@+id/edit_order_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Order Name" />
+        android:hint="Order Name"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edit_order_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Order Quantity"
-        android:inputType="number" />
+        android:inputType="number"
+        android:paddingTop="8dp" />
 
     <EditText
         android:id="@+id/edit_order_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Order Price"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:paddingTop="8dp" />
 
     <EditText
         android:id="@+id/edit_customer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Customer Name" />
+        android:hint="Customer Name"
+        android:inputType="text"
+        android:paddingTop="8dp" />
 
-    <EditText
-        android:id="@+id/edit_delivery_date"
+    <Button
+        android:id="@+id/pick_delivery_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Delivery Date"
-        android:inputType="date" />
+        android:text="Select Delivery Date"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/selected_delivery_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selected Date: None"
+        android:paddingTop="8dp" />
 
     <Button
         android:id="@+id/add_order_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Order" />
+        android:text="Add Order"
+        android:paddingTop="16dp" />
+
+    <Button
+        android:id="@+id/clear_order_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear Fields"
+        android:paddingTop="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="16dp" />
+
 </LinearLayout>
