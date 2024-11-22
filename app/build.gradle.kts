@@ -48,7 +48,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
+    // Added to help execute tasks synchrounously
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    // Provides mocked Android environment
+    testImplementation ("org.robolectric:robolectric:4.10")
+    // To mock dependencies
+    testImplementation ("org.mockito:mockito-core:4.5.1")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
