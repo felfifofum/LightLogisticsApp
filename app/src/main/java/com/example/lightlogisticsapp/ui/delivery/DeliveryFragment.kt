@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lightlogisticsapp.R
 import com.example.lightlogisticsapp.model.Delivery
 import com.example.lightlogisticsapp.model.DeliveryStatus
+import com.example.lightlogisticsapp.model.Order
 import com.example.lightlogisticsapp.model.Stock
 import com.example.lightlogisticsapp.ui.shared.SharedViewModel
 
@@ -22,6 +23,7 @@ class DeliveryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var deliveryAdapter: DeliveryAdapter
+    private var selectedDeliveryId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,20 +35,22 @@ class DeliveryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        deliveryAdapter = DeliveryAdapter()
+        // Set up RecyclerView and Adapter
+        deliveryAdapter = DeliveryAdapter(sharedViewModel)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = deliveryAdapter
 
+        // Observe deliveries and update the list
         sharedViewModel.deliveries.observe(viewLifecycleOwner, Observer { deliveries ->
             deliveryAdapter.submitList(deliveries)
         })
 
+        // Set up Add Delivery Button
         val addDeliveryButton = view.findViewById<Button>(R.id.add_delivery_button)
         val editDeliveryDestination = view.findViewById<EditText>(R.id.edit_delivery_destination)
         val editDeliveryItem = view.findViewById<EditText>(R.id.edit_delivery_item)
-        val updateStatusButton = view.findViewById<Button>(R.id.update_status_button)
 
         addDeliveryButton.setOnClickListener {
             val destination = editDeliveryDestination.text.toString()
@@ -69,10 +73,30 @@ class DeliveryFragment : Fragment() {
             }
         }
 
-        updateStatusButton.setOnClickListener {
-            val deliveryId = "1" // Replace with the actual delivery ID you want to update
-            sharedViewModel.updateDeliveryStatus(deliveryId, DeliveryStatus.IN_TRANSIT)
-            Toast.makeText(context, "Delivery status updated to IN_TRANSIT", Toast.LENGTH_SHORT).show()
+        // Set up Update Status Button
+        view.findViewById<Button>(R.id.update_status_button).setOnClickListener {
+            val deliveryId = deliveryAdapter.getSelectedDeliveryId()
+            if (deliveryId != null) {
+                // Find the selected delivery
+                val selectedDelivery = sharedViewModel.deliveries.value?.find { it.id == deliveryId }
+
+                selectedDelivery?.let {
+                    // Get the current status and find the next status
+                    val currentStatus = it.status
+                    val nextStatus = when (currentStatus) {
+                        DeliveryStatus.PENDING -> DeliveryStatus.IN_TRANSIT
+                        DeliveryStatus.IN_TRANSIT -> DeliveryStatus.DELIVERED
+                        DeliveryStatus.DELIVERED -> DeliveryStatus.CANCELLED
+                        DeliveryStatus.CANCELLED -> DeliveryStatus.PENDING
+                    }
+
+                    // Update the delivery status
+                    sharedViewModel.updateDeliveryStatus(deliveryId, nextStatus)
+                    Toast.makeText(context, "Delivery status updated to $nextStatus", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(context, "Select a delivery to update", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

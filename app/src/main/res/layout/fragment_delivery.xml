@@ -4,17 +4,20 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Input Fields for Adding Delivery -->
     <EditText
         android:id="@+id/edit_delivery_destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Delivery Destination" />
+        android:hint="Delivery Destination"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edit_delivery_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Item(s) to Deliver" />
+        android:hint="Item to Deliver"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/add_delivery_button"
@@ -28,10 +31,11 @@
         android:layout_height="wrap_content"
         android:text="Update Status" />
 
+    <!-- RecyclerView for Deliveries List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="249dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_weight="1" />
 

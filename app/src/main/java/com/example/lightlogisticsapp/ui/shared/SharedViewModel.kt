@@ -31,12 +31,31 @@ class SharedViewModel : ViewModel() {
             Order("1", "Laptop", 10, 1500.0, "John Doe", "01/11/2024"),
             Order("2", "Smartphone", 20, 800.0, "Jane Smith", "02/11/2024")
         )
+
         _deliveries.value = listOf(
             Delivery(
                 id = "1",
                 destination = "Warehouse A",
                 status = DeliveryStatus.PENDING,
-                items = listOf()
+                items = listOf(
+                    Stock("1", "Desk Chair", 100, 300.0)
+                )
+            ),
+            Delivery(
+                id = "2",
+                destination = "Customer B",
+                status = DeliveryStatus.IN_TRANSIT,
+                items = listOf(
+                    PerishableStock("4", "Milk", 50, 1.5, "11/12/2024")
+                )
+            ),
+            Delivery(
+                id = "3",
+                destination = "Main Office",
+                status = DeliveryStatus.DELIVERED,
+                items = listOf(
+                    Stock("2", "Laptop", 50, 1500.0)
+                )
             )
         )
     }

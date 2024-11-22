@@ -2,30 +2,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/delivery_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delivery ID"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/delivery_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delivery Destination" />
+        android:text="Destination"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/delivery_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delivery Status" />
+        android:text="Status"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:textColor="@color/teal_700" />
 
     <TextView
         android:id="@+id/delivery_items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delivery Items" />
+        android:text="Item"
+        android:textSize="14sp" />
 </LinearLayout>
