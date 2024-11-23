@@ -80,8 +80,6 @@ class SharedViewModel : ViewModel() {
 
 
     fun addOrder(newOrder: Order): Boolean {
-        Log.d("SharedViewModel", "Available stocks: ${_stocks.value}")
-
         // Case-insensitive/trimmed allowance
         val stock = _stocks.value?.find {
             it.name.trim().equals(newOrder.name.trim(), ignoreCase = true)
@@ -93,7 +91,6 @@ class SharedViewModel : ViewModel() {
         }
 
         if (stock.quantity < newOrder.quantity) {
-            Log.d("SharedViewModel", "Not enough stock: Available=${stock.quantity}, Requested=${newOrder.quantity}")
             return false
         }
 

@@ -1,8 +1,7 @@
-package com.example.lightlogisticsapp.ui
+package com.example.lightlogisticsapp.ui.order
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.lightlogisticsapp.model.Order
-import com.example.lightlogisticsapp.ui.order.OrderViewModel
 import com.example.lightlogisticsapp.ui.stock.StockViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Rule

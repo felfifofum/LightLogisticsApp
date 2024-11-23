@@ -1,4 +1,4 @@
-package com.example.lightlogisticsapp.ui
+package com.example.lightlogisticsapp.shared
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.lightlogisticsapp.model.Delivery

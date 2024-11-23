@@ -8,7 +8,7 @@ An Android mobile app built with object-oriented programming intended to manage 
 
 To use the LightLogisticsApp, you will need:
 - An Android device (phone or tablet) running Android 5.0 (Lollipop) or higher.
-- Internet connection for real-time updates and data synchronisation.
+- A stable internet connection to download and install the app.
 
 ### Installation
 
@@ -30,23 +30,14 @@ To use the LightLogisticsApp, you will need:
 
 PROVISIONAL
 
-1. **Dashboard**:
-    - View key metrics and alerts related to stock levels, orders, and deliveries.
-
-2. **Stock Management**:
+1. **Stock Management**:
     - Check current stock levels and update inventory as needed.
 
-3. **Order Processing**:
+2. **Order Processing**:
     - Manage and track orders.
 
-4. **Delivery Coordination**:
+3. **Delivery Coordination**:
     - Coordinate and track deliveries across multiple distribution centers.
-
-5. **Reports**:
-    - Generate and view various reports related to stock, orders, and deliveries.
-
-6. **Notifications**:
-    - Receive real-time updates and alerts for significant events such as new stock arrivals, order dispatches, and delivery completions.
 
 ## Support
 
