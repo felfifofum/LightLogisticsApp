@@ -15,9 +15,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lightlogisticsapp.R
+import com.example.lightlogisticsapp.TealiumHelper
 import com.example.lightlogisticsapp.model.PerishableStock
 import com.example.lightlogisticsapp.model.Stock
 import com.example.lightlogisticsapp.ui.shared.SharedViewModel
+import com.tealium.core.Tealium
 
 class StockFragment : Fragment() {
 
@@ -47,6 +49,9 @@ class StockFragment : Fragment() {
 
         stockAdapter = StockAdapter { stock, newQuantity ->
             sharedViewModel.updateStockQuantity(stock.id, newQuantity)
+
+            // Track stock update event
+            TealiumHelper.trackStockUpdate(stock.id, newQuantity)
         }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
@@ -69,6 +74,9 @@ class StockFragment : Fragment() {
             } else {
                 val newStock = Stock("3", stockName, stockQuantity, stockPrice)
                 sharedViewModel.addStock(newStock)
+
+                // Track adding event for non-perishable
+                TealiumHelper.trackStockAdd(newStock)
             }
 
             // Clear text boxes

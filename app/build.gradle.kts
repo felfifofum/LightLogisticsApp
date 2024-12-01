@@ -36,6 +36,14 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://maven.tealiumiq.com/android/releases/")
+        }
+    }
 }
 
 dependencies {
@@ -58,4 +66,12 @@ dependencies {
     testImplementation ("org.mockito:mockito-core:4.5.1")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Tealium for BrowserStack logging
+
+    /*
+    Tealium collects customer data across
+    digital touch points to improve customer experience.
+    */
+    implementation("com.tealium:kotlin-core:1.6.0")
 }

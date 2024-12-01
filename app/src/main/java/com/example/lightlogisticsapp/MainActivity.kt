@@ -7,7 +7,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.lightlogisticsapp.TealiumHelper.tealium
 import com.example.lightlogisticsapp.databinding.ActivityMainBinding
+import com.tealium.core.Tealium
+import com.tealium.dispatcher.TealiumEvent
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +18,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        TealiumHelper.init(application)
+
+        // Track app launch event
+        TealiumHelper.trackAppLaunch()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
