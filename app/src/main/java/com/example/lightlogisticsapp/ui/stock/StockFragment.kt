@@ -2,6 +2,7 @@ package com.example.lightlogisticsapp.ui.stock
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,6 @@ import com.example.lightlogisticsapp.TealiumHelper
 import com.example.lightlogisticsapp.model.PerishableStock
 import com.example.lightlogisticsapp.model.Stock
 import com.example.lightlogisticsapp.ui.shared.SharedViewModel
-import com.tealium.core.Tealium
 
 class StockFragment : Fragment() {
 
@@ -52,6 +52,7 @@ class StockFragment : Fragment() {
 
             // Track stock update event
             TealiumHelper.trackStockUpdate(stock.id, newQuantity)
+            Log.d("TealiumHelper", "Tracking stock update event: Stock ID = ${stock.id}, New Quantity = $newQuantity")
         }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
@@ -77,6 +78,7 @@ class StockFragment : Fragment() {
 
                 // Track adding event for non-perishable
                 TealiumHelper.trackStockAdd(newStock)
+                Log.d("TealiumHelper", "Tracking non-perishable stock add event: ID = ${newStock.id}, Name = ${newStock.name}, Quantity = ${newStock.quantity}, Price = ${newStock.price}")
             }
 
             // Clear text boxes

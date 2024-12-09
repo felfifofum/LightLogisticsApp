@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lightlogisticsapp.R
 import com.example.lightlogisticsapp.model.Delivery
 import com.example.lightlogisticsapp.model.DeliveryStatus
-import com.example.lightlogisticsapp.model.Order
 import com.example.lightlogisticsapp.model.Stock
 import com.example.lightlogisticsapp.ui.shared.SharedViewModel
 
@@ -23,7 +22,6 @@ class DeliveryFragment : Fragment() {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var deliveryAdapter: DeliveryAdapter
-    private var selectedDeliveryId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

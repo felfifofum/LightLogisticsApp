@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.lightlogisticsapp.model.Stock
 
 import com.tealium.core.Environment
-import com.tealium.core.LogLevel
 import com.tealium.core.Tealium
 import com.tealium.core.TealiumConfig
 import com.tealium.dispatcher.TealiumEvent
@@ -18,7 +17,7 @@ object TealiumHelper {
             application,
             "LightLogistics",
             "ll-lightlogisticsapp",
-            Environment.DEV,
+            Environment.PROD,
         )
         tealium = Tealium.create("tealium_instance", tealiumConfig)
     }

@@ -1,16 +1,14 @@
 package com.example.lightlogisticsapp
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.lightlogisticsapp.TealiumHelper.tealium
 import com.example.lightlogisticsapp.databinding.ActivityMainBinding
-import com.tealium.core.Tealium
-import com.tealium.dispatcher.TealiumEvent
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
         // Track app launch event
         TealiumHelper.trackAppLaunch()
+        // Log for BrowserStack
+        Log.d("TealiumHelper", "Tracking app launch event: app_launch")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

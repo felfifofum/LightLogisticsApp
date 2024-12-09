@@ -22,6 +22,7 @@ class StockViewModel : ViewModel() {
     fun updateStockQuantity(id: String, newQuantity: Int) {
         _stocks.value = _stocks.value?.map {
             if (it.id == id) it.updateQuantity(newQuantity) else it
+            if (it.id == id) it.updateQuantity(newQuantity) else it
         }
     }
 }
